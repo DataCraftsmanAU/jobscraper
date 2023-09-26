@@ -5,3 +5,5 @@ linkedinjobs.xlsx
 seek.ipynb
 seekjobs.xlsx
 autoapply.ipynb
+venv/
+__pycache__/config.cpython-310.pyc
