@@ -1,3 +1,5 @@
+
+#install these with 'pip install -r requirements.txt'
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 import pandas as pd
@@ -8,28 +10,18 @@ import openpyxl
 from datetime import datetime
 from urllib.parse import urlparse
 
-from config import *
-
-searches = [
-    'AI',
-    'NV1%22%20AND%20%22data',
-    'DataOps',
-    'Big%20Data',
-    'Solution%20Architect',
-    'Analytics Engineer',
-    'Machine Learning Engineer',
-    'MLOps',
-    'ML',
-    'Data%20Architect',
-    'Data%20Engineer',
-    'BI'
-    ]
+#these files are created in this same folder. config.py and credentials.py
+from credentials import *   # will have your LINKEDIN_ACCOUNT and LINKEDIN_PASSWORD variables stored as strings.
+from config import *        # will have your search variables.
 
 def init_driver():
     driver = webdriver.Chrome()
     return driver
 
 def seek_job_search(driver):
+    """Runs seek.com.au specific webscraping and then parses the salary text to attempt to normalise it for PA."""
+    
+    # seek.com.au specific search variables
     job_data = []
     lastpage = False
     minimumSalary = '150000'
@@ -169,14 +161,14 @@ def seek_job_search(driver):
         print("----")
         return number * multiplier
 
-    for search in range(len(searches)):
+    for search in range(len(SEARCHES)):
         for worktype in worktypes:
-            driver.get(f'https://www.seek.com.au/jobs/{worktype}?{daterange}keywords=%22{searches[search]}%22&salaryrange={minimumSalary}-&salarytype=annual&worktype=243%2C242%2C244')
+            driver.get(f'https://www.seek.com.au/jobs/{worktype}?{daterange}keywords=%22{SEARCHES[search]}%22&salaryrange={minimumSalary}-&salarytype=annual&worktype=243%2C242%2C244')
             time.sleep(0.5)
             lastpage = False
             while lastpage == False:
                 try:
-                    listjobs(worktype, searches[search])
+                    listjobs(worktype, SEARCHES[search])
                     next = driver.find_element(By.XPATH,'//*[@id="app"]/div/div[4]/div/section/div[2]/div/div/div[1]/div/div/div[6]/nav/ul/li[last()]/a')
                     next.click()
                     time.sleep(0.5)
@@ -190,9 +182,11 @@ def seek_job_search(driver):
         df_seek.to_excel("seekjobs.xlsx", index=False)
 
 def linkedin_job_search(driver):
+    """Runs linkedin.com specific web scraping."""
+    
+    # linkedin.com specific search variables
     job_data = []
     worktypes = ['F','C']
-    quick = True
 
     #quick = '&f_AL=true'
     quick = ''
@@ -252,10 +246,10 @@ def linkedin_job_search(driver):
     driver.get('https://www.linkedin.com/jobs/collections/recommended')
     time.sleep(2)
 
-    for search in range(len(searches)):
+    for search in range(len(SEARCHES)):
         for worktype in worktypes:
-            print(f'https://www.linkedin.com/jobs/search/?currentJobId=3710578757{quick}&f_JT={worktype}&geoId=101452733&keywords=%22{searches[search]}%22&location=Australia&refresh=true&sortBy=DD')
-            driver.get(f'https://www.linkedin.com/jobs/search/?currentJobId=3710578757{quick}&f_JT={worktype}&geoId=101452733&keywords=%22{searches[search]}%22&location=Australia&refresh=true&sortBy=DD')
+            print(f'https://www.linkedin.com/jobs/search/?currentJobId=3710578757{quick}&f_JT={worktype}&geoId=101452733&keywords=%22{SEARCHES[search]}%22&location=Australia&refresh=true&sortBy=DD')
+            driver.get(f'https://www.linkedin.com/jobs/search/?currentJobId=3710578757{quick}&f_JT={worktype}&geoId=101452733&keywords=%22{SEARCHES[search]}%22&location=Australia&refresh=true&sortBy=DD')
             time.sleep(3)
             jobCount = 0
             try:   
@@ -268,9 +262,9 @@ def linkedin_job_search(driver):
             print(resultCount)
             while resultCount > jobCount:
                 try:
-                    linkedInJobSearch(worktype, searches[search])
+                    linkedInJobSearch(worktype, SEARCHES[search])
                     jobCount += 25
-                    driver.get(f'https://www.linkedin.com/jobs/search/?currentJobId=3710578757{quick}&f_JT={worktype}&geoId=101452733&keywords=%22{searches[search]}%22&location=Australia&refresh=true&sortBy=DD&start={jobCount}')
+                    driver.get(f'https://www.linkedin.com/jobs/search/?currentJobId=3710578757{quick}&f_JT={worktype}&geoId=101452733&keywords=%22{SEARCHES[search]}%22&location=Australia&refresh=true&sortBy=DD&start={jobCount}')
                     time.sleep(3)
                 except:
                     jobCount = resultCount 
