@@ -25,3 +25,9 @@ Remove the `-removethis` from `credentials-removethis.py` and then update it wit
 ## How to Run
 
 In the terminal run the command `python jobscraper.py` to start searching for jobs!
+
+This should trigger two browser windows to open and start cycling through all the job pages for the search terms you have in config.py.
+
+Try not to run this too often as you will get blacklisted or they will change their website so this doesn't work! 
+
+I run it once a day.
