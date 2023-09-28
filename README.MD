@@ -24,13 +24,26 @@ Remove the `-removethis` from `credentials-removethis.py` and then update it wit
 
 ## How to Run
 
-In the terminal run the command `python jobscraper.py` to start searching for jobs!
+1. Make sure you have changed your settings and built your environment correctly.
+2. Double click `jobscraper.bat` and it will start scraping! Alternatively run `python jobscraper.py`
 
 This should trigger two browser windows to open and start cycling through all the job pages for the search terms you have in config.py.
 
 Try not to run this too often as you will get blacklisted or they will change their website so this doesn't work!
 
 I run it once a day.
+
+### Windows Task Scheduler
+
+1. In start search for `Task Scheduler`.
+2. Go to `Task Scheduler Library`
+3. `Create Task...`
+4. Go to Actions and New...
+5. Choose the Program Script like: `D:\jobscraper\jobscraper.bat` obviously adjust to your location.
+6. Start in: `D:\jobscraper\`
+7. Save and go to Triggers, New...
+8. Choose a schedule and save all and close.
+9. Test the task by right clicking and pressing Run
 
 ## Backlog
 

@@ -19,15 +19,20 @@ if __name__ == "__main__":
     
     if WEBSITES['seek']:
         driverSeek = init_driver()
-        seek_thread = threading.Thread(target=seek_job_search, args=(driverSeek,))
-        seek_thread.start()
-        seek_thread.join()
-        
     if WEBSITES['linkedin']:
         driverLinkedin = init_driver()
+    if WEBSITES['seek']:
+        seek_thread = threading.Thread(target=seek_job_search, args=(driverSeek,))
+    if WEBSITES['linkedin']:    
         linkedin_thread = threading.Thread(target=linkedin_job_search, args=(driverLinkedin,))
+    if WEBSITES['seek']:    
+        seek_thread.start()
+    if WEBSITES['linkedin']:    
         linkedin_thread.start()
-        linkedin_thread.join()
+    if WEBSITES['seek']:    
+        seek_thread.join()
+    if WEBSITES['linkedin']:    
+        linkedin_thread.join()   
     
     try:
         df_linkedin = pd.ExcelFile('linkedinjobs.xlsx').parse('Sheet1')

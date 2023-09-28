@@ -6,7 +6,6 @@ import re
 
 """
 
-
 def calculate_result(salary):
     "Normalises the input to be an annual salary based on 48 weeks of work per year, 5 days per week, 8 hours per day."
     #TODO Need to scale the calculate result with the minimum salary
