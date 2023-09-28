@@ -16,17 +16,18 @@ def init_driver():
     return driver
 
 if __name__ == "__main__":
-    driverLinkedin = init_driver()
-    driverSeek = init_driver()
     
-    seek_thread = threading.Thread(target=seek_job_search, args=(driverSeek,))
-    linkedin_thread = threading.Thread(target=linkedin_job_search, args=(driverLinkedin,))
-
-    seek_thread.start()
-    linkedin_thread.start()
-
-    seek_thread.join()
-    linkedin_thread.join()
+    if WEBSITES['seek']:
+        driverSeek = init_driver()
+        seek_thread = threading.Thread(target=seek_job_search, args=(driverSeek,))
+        seek_thread.start()
+        seek_thread.join()
+        
+    if WEBSITES['linkedin']:
+        driverLinkedin = init_driver()
+        linkedin_thread = threading.Thread(target=linkedin_job_search, args=(driverLinkedin,))
+        linkedin_thread.start()
+        linkedin_thread.join()
     
     try:
         df_linkedin = pd.ExcelFile('linkedinjobs.xlsx').parse('Sheet1')
@@ -41,5 +42,3 @@ if __name__ == "__main__":
         df_combined.to_excel('jobs.xlsx', index=False)
     except:
         print("Error loading data")
-    
-    

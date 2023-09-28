@@ -4,8 +4,6 @@ import re
 """Missing Edge Cases
 "up to ~$180,000k + benefits"
 
-
-
 """
 
 
@@ -15,6 +13,9 @@ def calculate_result(salary):
     number = extract_number(salary)
     if number is None:
         return 0
+    if number < 2050: #Edge case for years.
+        if number >= 2023:
+            return None
     if number > 5000:
         multiplier = 1
     elif number > 500:
@@ -85,7 +86,6 @@ def extract_number(text):
             match = parseNumber(match)
             return match
         
-        # Group
         if re.findall(r'\$\d{4}', text):
             match = re.findall(r'\$\d{4}', text)
             match = parseNumber(match)

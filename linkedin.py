@@ -14,7 +14,6 @@ def linkedin_job_search(driver):
     """Runs linkedin.com specific web scraping."""
     
     # linkedin.com specific search variables
-    job_data = []
     worktypes = ['F','C']
 
     #quick = '&f_AL=true'
@@ -56,7 +55,8 @@ def linkedin_job_search(driver):
                 link = ""
                 
             job_data.append({'date': date, 'Work Type': worktype, 'Search Term': search, 'Job Title': jobTitle, 'Company Name': company, 'Location': location, 'Salary': 0, 'Link': link, 'Details': ""})
-            
+    
+    job_data = []        
     # Navigate to the LinkedIn login page
     driver.get('https://www.linkedin.com/login')
 

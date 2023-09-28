@@ -1,8 +1,8 @@
 # Job Scraper
 
-This project is for scraping job adverts from www.seek.com.au and www.linkedin.com. 
+This project is for scraping job adverts from www.seek.com.au and www.linkedin.com.
 
-Unique jobs are appended to the jobs excel file each time you run it with the current date that it was found. Uniqueness was based on the URL of the job ad. 
+Unique jobs are appended to the jobs excel file each time you run it with the current date that it was found. Uniqueness was based on the URL of the job ad.
 
 A few other fields are saved and salaries are attempted to be normalised to PA. This is a WIP as most jobs use open strings for salary inputs...
 
@@ -28,6 +28,20 @@ In the terminal run the command `python jobscraper.py` to start searching for jo
 
 This should trigger two browser windows to open and start cycling through all the job pages for the search terms you have in config.py.
 
-Try not to run this too often as you will get blacklisted or they will change their website so this doesn't work! 
+Try not to run this too often as you will get blacklisted or they will change their website so this doesn't work!
 
 I run it once a day.
+
+## Backlog
+
+* Extract details from each job advert.
+  * Contact Names
+  * Contact Numbers
+  * Skills lists
+* Analytics for finding best jobs.
+* Auto Apply for 'Quick Apply' jobs.
+* Generate JSON resume based on advert.
+* Gererate Cover letters based on advert.
+* Use Machine Learning to Guestimate Salary / Scrape payscales
+* Create Analytics for recognising trends
+* Additional job websites (MAANG+)

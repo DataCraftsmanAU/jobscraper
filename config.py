@@ -14,3 +14,8 @@ SEARCHES = [
     'Data%20Engineer',
     'BI'
 ]
+WEBSITES = {'seek': True, 'linkedin': True}
+
+#Uncomment these to search all of ICT in seek.
+#SEARCHES = []
+#WEBSITES = {'seek': True, 'linkedin': False}
