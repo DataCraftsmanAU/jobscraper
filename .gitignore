@@ -1,9 +1,5 @@
-jobs.xlsx
 credentials.py
-linkedin.ipynb
-linkedinjobs.xlsx
-seek.ipynb
-seekjobs.xlsx
-autoapply.ipynb
+*.ipynb
 venv/
-__pycache__/config.cpython-310.pyc
+__pycache__/
+*.xlsx
