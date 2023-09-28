@@ -4,7 +4,7 @@ This project is for scraping job adverts from www.seek.com.au and www.linkedin.c
 
 Unique jobs are appended to the jobs excel file each time you run it with the current date that it was found. Uniqueness was based on the URL of the job ad.
 
-A few other fields are saved and salaries are attempted to be normalised to PA. This is a WIP as most jobs use open strings for salary inputs...
+A few other fields are saved and salaries are normalised to Per Annum.
 
 ## Setup
 
