@@ -4,10 +4,14 @@ import re
 """Missing Edge Cases
 "up to ~$180,000k + benefits"
 
+
+
 """
 
 
 def calculate_result(salary):
+    "Normalises the input to be an annual salary based on 48 weeks of work per year, 5 days per week, 8 hours per day."
+    #TODO Need to scale the calculate result with the minimum salary
     number = extract_number(salary)
     if number is None:
         return 0
@@ -22,6 +26,7 @@ def calculate_result(salary):
     return number * multiplier
 
 def largerNumber(match):
+    "Extracts the larger of 2 numbers out of a list."
     try:
         match = match[1]
     except:
@@ -32,12 +37,14 @@ def largerNumber(match):
     return match
 
 def parseNumber(match):
+    "Extracts an int out of the input string."
     match = largerNumber(match)
     match = re.findall('\d+', match)
     match = int(match[0])
     return match
 
 def extract_number(text): 
+    "Parses text to find any resemblence of a salary using regex combinations. > 90% accurate."
     try:
         text = text.upper()
         if re.findall("^[^\d]*$", text):
