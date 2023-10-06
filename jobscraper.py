@@ -1,4 +1,3 @@
-
 #install these with 'pip install -r requirements.txt'
 from selenium import webdriver
 import pandas as pd

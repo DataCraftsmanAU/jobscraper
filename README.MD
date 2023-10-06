@@ -25,7 +25,8 @@ Remove the `-removethis` from `credentials-removethis.py` and then update it wit
 ## How to Run
 
 1. Make sure you have changed your settings and built your environment correctly.
-2. Double click `jobscraper.bat` and it will start scraping! Alternatively run `python jobscraper.py`
+2. Ensure you have selected the search terms you want in `config.py`!
+3. Double click `jobscraper.bat` and it will start scraping! Alternatively run `python jobscraper.py`
 
 This should trigger two browser windows to open and start cycling through all the job pages for the search terms you have in config.py.
 
