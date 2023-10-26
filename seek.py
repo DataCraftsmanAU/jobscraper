@@ -27,7 +27,7 @@ def seek_job_search(driver):
         df = pd.DataFrame()
 
     def listjobs(worktype, search):
-        job_listings = driver.find_elements(By.XPATH, '//*[@id="app"]/div/div[4]/div/section/div[2]/div/div/div[1]/div/div/div[3]/div/div/div/div/div')
+        job_listings = driver.find_elements(By.CSS_SELECTOR, '#app > div > div:nth-child(7) > div > section > div:nth-child(2) > div > div > div._1wkzzau0.a1msqip._14k02wk3 > div > div > div._1wkzzau0._5amf0u0 > div > div > div > div')
         for listing in job_listings:
             try:
                 date = datetime.today().date()
@@ -97,7 +97,7 @@ def seek_job_search(driver):
                 while lastpage == False:
                     try:
                         listjobs(worktype, SEARCHES[search])
-                        next = driver.find_element(By.XPATH,'//*[@id="app"]/div/div[4]/div/section/div[2]/div/div/div[1]/div/div/div[6]/nav/ul/li[last()]/a')
+                        next = driver.find_element(By.CSS_SELECTOR,'nav > ul > li._1wkzzau0.a1msqia6.a1msqi9v.a1msqiw > a')
                         next.click()
                         delay = random.uniform(0.5, 1.0)
                         time.sleep(delay)

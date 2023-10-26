@@ -17,7 +17,7 @@ def checkJobs(driver):
             print(df_seek['Link'][job])
             driver.get(df_seek['Link'][job])
             try:
-                print(driver.find_element(By.CSS_SELECTOR, '#app > div > div:nth-child(7) > div > div > div > div > div:nth-child(1) > h2').text)
+                print(driver.find_element(By.CSS_SELECTOR, '#app > div > div:nth-child(8) > div > div > div > div > div:nth-child(1) > h2').text)
                 df_seek['Active'][job] = False
                 df_seek['Date Removed'][job] = datetime.today().date()
             except:

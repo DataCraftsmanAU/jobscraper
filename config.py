@@ -12,10 +12,10 @@ SEARCHES = [
     'AI',
     'NV1',
     'Data',
-    'BI'
+    'BI',
     'Solution%20Architect',
 ]
-WEBSITES = {'seek': True, 'linkedin': True}
+WEBSITES = {'seek': True, 'linkedin': False}
 
 #Uncomment these to search all of ICT in seek.
 #SEARCHES = []
