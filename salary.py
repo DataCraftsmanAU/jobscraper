@@ -17,7 +17,7 @@ def calculate_result(salary):
             return None
     if number > 5000:
         multiplier = 1
-    elif number > 500:
+    elif number > 300:
         multiplier = 5 * 48
     elif number > 25:
         multiplier = 5 * 48 * 8

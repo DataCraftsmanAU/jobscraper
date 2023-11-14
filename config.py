@@ -1,20 +1,24 @@
 SEARCHES = [
-    'NV1%22%20AND%20%22data',
+    '"Data%20Engineer"%20"Remote"',
+    'NV1%20AND%20Data',
+    'Data%20Solution%20Architect',
     'Data%20Architect',
     'Data%20Engineer',
     'DataOps',
-    'ModelOps',
-    'Big%20Data',
-    'MLOps',
-    'Analytics Engineer',
-    'Machine Learning Engineer',
-    'ML',
+    'Artificial%20Intelligence%20Architect',
+    'AI%20Architect',
+    'Artifical%20Intelligence',
     'AI',
-    'NV1',
-    'Data',
-    'BI',
-    'Solution%20Architect',
+    'LLMOps',
+    'ModelOps',
+    'MLOps',
+    'Machine%20Learning%20Engineer',
+    'ML',
+    'Big%20Data',
+    'Data%20Model',
+    'Analytics%20Engineer'
 ]
+
 WEBSITES = {'seek': True, 'linkedin': False}
 
 #Uncomment these to search all of ICT in seek.

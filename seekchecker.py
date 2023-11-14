@@ -13,7 +13,7 @@ pd.set_option('mode.chained_assignment', None)
 
 def checkJobs(driver):
     for job in range(0, len(df_seek['Link'])):
-        if (df_seek['Active'][job] == True):
+        if (df_seek['Active'][job] != 0):
             print(df_seek['Link'][job])
             driver.get(df_seek['Link'][job])
             try:
@@ -24,6 +24,7 @@ def checkJobs(driver):
                 print("Still Active")
 
 df_seek = pd.ExcelFile('seekjobs.xlsx').parse('Sheet1')
+df_seek = df_seek.sort_values(by=['date'])
 
 if 'Active' not in df_seek.columns:
     df_seek['Active'] = True

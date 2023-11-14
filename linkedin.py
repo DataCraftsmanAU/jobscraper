@@ -54,7 +54,7 @@ def linkedin_job_search(driver):
             except:
                 link = ""
                 
-            job_data.append({'date': date, 'Work Type': worktype, 'Search Term': search, 'Job Title': jobTitle, 'Company Name': company, 'Location': location, 'Salary': 0, 'Link': link, 'Details': ""})
+            job_data.append({'date': date, 'Work Type': worktype, 'Search Term': search, 'Job Title': jobTitle, 'Company Name': company, 'Location': location, 'Salary': 0, 'Link': link})
     
     job_data = []        
     # Navigate to the LinkedIn login page

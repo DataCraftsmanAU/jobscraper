@@ -27,7 +27,7 @@ def seek_job_search(driver):
         df = pd.DataFrame()
 
     def listjobs(worktype, search):
-        job_listings = driver.find_elements(By.CSS_SELECTOR, '#app > div > div:nth-child(7) > div > section > div:nth-child(2) > div > div > div._1wkzzau0.a1msqip._14k02wk3 > div > div > div._1wkzzau0._5amf0u0 > div > div > div > div')
+        job_listings = driver.find_elements(By.CSS_SELECTOR, 'article')
         for listing in job_listings:
             try:
                 date = datetime.today().date()
@@ -59,18 +59,8 @@ def seek_job_search(driver):
                 link = parsed_url.scheme + "://" + parsed_url.netloc + parsed_url.path
             except:
                 link = ""
-            try:
-                details = (listing.find_element(By.CSS_SELECTOR, 'div:nth-child(1) > div > div:nth-child(3) > div > span').text + listing.find_element(By.CSS_SELECTOR, 'div:nth-child(1) > div > div:nth-child(4) > div > span').text)
-            except:
-                try:
-                    details = (listing.find_element(By.CSS_SELECTOR, 'div:nth-child(1) > div > div:nth-child(3) > div > span').text)
-                except:
-                    try:
-                        details = (listing.find_element(By.CSS_SELECTOR, 'div:nth-child(1) > div > div:nth-child(4) > div > span').text)
-                    except:
-                        details = ""
                 
-            job_data.append({'date': date, 'Work Type': worktype, 'Search Term': search, 'Job Title': jobTitle, 'Company Name': company, 'Location': location, 'Salary': salary, 'Link': link, 'Details': details})
+            job_data.append({'date': date, 'Work Type': worktype, 'Search Term': search, 'Job Title': jobTitle, 'Company Name': company, 'Location': location, 'Salary': salary, 'Link': link})
     
     job_data = []
     if SEARCHES == []:
