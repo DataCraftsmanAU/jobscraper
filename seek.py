@@ -16,7 +16,6 @@ def seek_job_search(driver):
     """Runs seek.com.au specific webscraping and then parses the salary text to attempt to normalise it for PA."""
     
     # seek.com.au specific search variables
-    lastpage = False
     minimumSalary = '150000'
     worktypes = ['full-time','contract-temp']
     
@@ -63,36 +62,36 @@ def seek_job_search(driver):
             job_data.append({'date': date, 'Work Type': worktype, 'Search Term': search, 'Job Title': jobTitle, 'Company Name': company, 'Location': location, 'Salary': salary, 'Link': link})
     
     job_data = []
-    if SEARCHES == []:
+    for search in range(len(SEARCHES)):
         for worktype in worktypes:
-            driver.get(f'https://www.seek.com.au/jobs-in-information-communication-technology/{worktype}?salaryrange={minimumSalary}-&salarytype=annual')
-            time.sleep(0.5)
+            driver.get(f'https://www.seek.com.au/jobs/{worktype}?keywords=%22{SEARCHES[search]}%22&salaryrange={minimumSalary}-&salarytype=annual&worktype=243%2C242%2C244')
+            delay = random.uniform(0.5, 1.0)
+            time.sleep(delay)
             lastpage = False
             while lastpage == False:
                 try:
-                    listjobs(worktype, "ICT General")
-                    next = driver.find_element(By.XPATH,'//*[@id="app"]/div/div[4]/div/section/div[2]/div/div/div[1]/div/div/div[6]/nav/ul/li[last()]/a')
+                    listjobs(worktype, SEARCHES[search])
+                    next = driver.find_element(By.CSS_SELECTOR,'nav > ul > li._1wkzzau0.a1msqia6.a1msqi9v.a1msqiw > a')
                     next.click()
                     delay = random.uniform(0.5, 1.0)
                     time.sleep(delay)
                 except:
                     lastpage = True
-    else:
-        for search in range(len(SEARCHES)):
-            for worktype in worktypes:
-                driver.get(f'https://www.seek.com.au/jobs/{worktype}?keywords=%22{SEARCHES[search]}%22&salaryrange={minimumSalary}-&salarytype=annual&worktype=243%2C242%2C244')
+                    
+    for worktype in worktypes:                 
+        driver.get(f'https://www.seek.com.au/Data-jobs/{worktype}?classification=1223%2C6281%2C1210&daterange=1&sortmode=ListedDate')
+        delay = random.uniform(0.5, 1.0)
+        time.sleep(delay)
+        lastpage = False
+        while lastpage == False:
+            try:
+                listjobs(worktype, "Data")
+                next = driver.find_element(By.CSS_SELECTOR,'nav > ul > li._1wkzzau0.a1msqia6.a1msqi9v.a1msqiw > a')
+                next.click()
                 delay = random.uniform(0.5, 1.0)
                 time.sleep(delay)
-                lastpage = False
-                while lastpage == False:
-                    try:
-                        listjobs(worktype, SEARCHES[search])
-                        next = driver.find_element(By.CSS_SELECTOR,'nav > ul > li._1wkzzau0.a1msqia6.a1msqi9v.a1msqiw > a')
-                        next.click()
-                        delay = random.uniform(0.5, 1.0)
-                        time.sleep(delay)
-                    except:
-                        lastpage = True
+            except:
+                lastpage = True
                         
     print("Saving")
     newdata = pd.DataFrame(job_data)

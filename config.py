@@ -1,4 +1,5 @@
 SEARCHES = [
+    'Azure',
     '"Data%20Engineer"%20"Remote"',
     'NV1%20AND%20Data',
     'Data%20Solution%20Architect',

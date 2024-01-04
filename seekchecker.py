@@ -2,7 +2,7 @@
 from selenium import webdriver
 import pandas as pd
 import threading
-from datetime import datetime
+from datetime import datetime, timedelta
 
 #these files are created in this same folder. config.py and credentials.py
 from credentials import *   # will have your LINKEDIN_ACCOUNT and LINKEDIN_PASSWORD variables stored as strings.
@@ -25,6 +25,10 @@ def checkJobs(driver):
 
 df_seek = pd.ExcelFile('seekjobs.xlsx').parse('Sheet1')
 df_seek = df_seek.sort_values(by=['date'])
+
+#Deactivate fields older than 30 days
+threshold_date = datetime.today() - timedelta(days=30)
+df_seek['active'] = df_seek['date'].apply(lambda x: 0 if x <= threshold_date else 1)
 
 if 'Active' not in df_seek.columns:
     df_seek['Active'] = True
