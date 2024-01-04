@@ -76,3 +76,4 @@ I run it once a day.
 * Gererate Cover letters based on advert.
 * Use Machine Learning to Guestimate Salary / Scrape payscales
 * Additional job websites (MAANG+)
+* Fix Fortnightly Salaries

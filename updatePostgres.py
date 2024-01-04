@@ -12,12 +12,13 @@ print("Loading seekjobs.xlsx")
 #Load Excel files
 df_combined = pd.ExcelFile('seekjobs.xlsx').parse('Sheet1')
 
+df_combined['Salary Calculation'] = df_combined['Salary'].apply(lambda x: calculate_result(x) if x is not None else None)
+
 print("Cleaning and Formatting Data")
 #Type Casting
 df_combined['Salary Calculation'] = df_combined['Salary Calculation'].fillna(0).astype('int64')
 df_combined['date'] = df_combined['date'].apply(lambda x: x.strftime('%Y-%m-%d') if pd.notnull(x) else None)
 df_combined['Date Removed'] = df_combined['Date Removed'].apply(lambda x: x.strftime('%Y-%m-%d') if pd.notnull(x) else None)
-df_combined['Salary Calculation'] = df_combined['Salary'].apply(lambda x: calculate_result(x) if x is not None else None)
 
 # Convert the dataframe to a list of tuples
 data = df_combined.to_records(index=False).tolist()

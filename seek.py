@@ -78,7 +78,7 @@ def seek_job_search(driver):
                 except:
                     lastpage = True
                                     
-    print("Saving")
+    print("Saving seekjobs.xlsx...")
     newdata = pd.DataFrame(job_data)
     df_seek = pd.concat([df,newdata], ignore_index=True)
     df_seek = df_seek.drop_duplicates(subset=['Link'])
