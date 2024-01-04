@@ -1,10 +1,22 @@
 # Job Scraper
 
-This project is for scraping job adverts from www.seek.com.au and www.linkedin.com.
+This project is for scraping job adverts from www.seek.com.au.
 
 Unique jobs are appended to the jobs excel file each time you run it with the current date that it was found. Uniqueness was based on the URL of the job ad.
 
 A few other fields are saved and salaries are normalised to Per Annum.
+
+The program will check any of the ads to see if they are still active when running the .bat file and mark what date they were removed. This allows you to see how long they are listed and view currently active jobs. Might not work atm if you haven't already got data. I haven't tested that.
+
+The Analytics.pbix is a PowerBI file that allows you to view a ton of information about the data you have scraped. I use this every day to look at jobs.
+
+Data is stored in both Excel and Postgres if you have a server configured.
+
+![Screenshot](images/trends.png)
+
+![Screenshot](images/trends.png)
+
+![Screenshot](images/trends.png)
 
 ## Setup
 
@@ -20,7 +32,13 @@ Run `pip install -r requirements.txt` to install all the required python package
 
 Update your search terms in `config.py` to match what jobs you want to search for. `%20` is required whereever a space would be.
 
-Remove the `-removethis` from `credentials-removethis.py` and then update it with your linkedin account details, this is used for logging into the account.
+### Postgres
+
+If you want you can use your own postgres server to load the data.
+
+Run the schema.sql in your database.
+
+Remove the `-removethis` from `credentials-removethis.py` and then update it with your postgres details.
 
 ## How to Run
 
@@ -28,7 +46,7 @@ Remove the `-removethis` from `credentials-removethis.py` and then update it wit
 2. Ensure you have selected the search terms you want in `config.py`!
 3. Double click `jobscraper.bat` and it will start scraping! Alternatively run `python jobscraper.py`
 
-This should trigger two browser windows to open and start cycling through all the job pages for the search terms you have in config.py.
+This should trigger a browser window to open and start cycling through all the job pages for the search terms you have in config.py.
 
 Try not to run this too often as you will get blacklisted or they will change their website so this doesn't work!
 
@@ -49,13 +67,12 @@ I run it once a day.
 ## Backlog
 
 * Extract details from each job advert.
+
   * Contact Names
   * Contact Numbers
   * Skills lists
-* Analytics for finding best jobs.
 * Auto Apply for 'Quick Apply' jobs.
 * Generate JSON resume based on advert.
 * Gererate Cover letters based on advert.
 * Use Machine Learning to Guestimate Salary / Scrape payscales
-* Create Analytics for recognising trends
 * Additional job websites (MAANG+)

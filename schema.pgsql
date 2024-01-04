@@ -1,3 +1,5 @@
+CREATE SCHEMA jobscraper;
+
 CREATE TABLE jobscraper.jobs(
 "date" date,
 "Work Type" text,
@@ -8,6 +10,7 @@ CREATE TABLE jobscraper.jobs(
 "Salary" text,
 "Link" text,
 "Salary Calculation" int,
-"Active" bool,
-"Date Removed" date,
-"Source" text)
+"Date Removed" date)
+
+ALTER TABLE ONLY jobscraper.jobs
+    ADD CONSTRAINT jobs_pkey PRIMARY KEY ("Link");

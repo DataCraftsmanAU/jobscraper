@@ -19,9 +19,3 @@ SEARCHES = [
     'Data%20Model',
     'Analytics%20Engineer'
 ]
-
-WEBSITES = {'seek': True, 'linkedin': False}
-
-#Uncomment these to search all of ICT in seek.
-#SEARCHES = []
-#WEBSITES = {'seek': True, 'linkedin': False}

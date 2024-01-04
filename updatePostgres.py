@@ -3,10 +3,9 @@ import psycopg2
 import pandas as pd
 
 #these files are created in this same folder. config.py and credentials.py
-from credentials import *   # will have your LINKEDIN_ACCOUNT and LINKEDIN_PASSWORD variables stored as strings.
+from credentials import *   # stores your postgres server details
 from config import *        # will have your search variables.
 from seek import *
-from linkedin import *
 from salary import *
 
 print("Loading seekjobs.xlsx")
@@ -18,6 +17,7 @@ print("Cleaning and Formatting Data")
 df_combined['Salary Calculation'] = df_combined['Salary Calculation'].fillna(0).astype('int64')
 df_combined['date'] = df_combined['date'].apply(lambda x: x.strftime('%Y-%m-%d') if pd.notnull(x) else None)
 df_combined['Date Removed'] = df_combined['Date Removed'].apply(lambda x: x.strftime('%Y-%m-%d') if pd.notnull(x) else None)
+df_combined['Salary Calculation'] = df_combined['Salary'].apply(lambda x: calculate_result(x) if x is not None else None)
 
 # Convert the dataframe to a list of tuples
 data = df_combined.to_records(index=False).tolist()
