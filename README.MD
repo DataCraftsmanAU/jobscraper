@@ -12,9 +12,9 @@ The Analytics.pbix is a PowerBI file that allows you to view a ton of informatio
 
 Data is stored in both Excel and Postgres if you have a server configured.
 
-![Screenshot](images/trends.png)
+![Screenshot](images/dashboard.png)
 
-![Screenshot](images/trends.png)
+![Screenshot](images/listings.png)
 
 ![Screenshot](images/trends.png)
 
