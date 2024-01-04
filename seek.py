@@ -16,7 +16,7 @@ def seek_job_search(driver):
     """Runs seek.com.au specific webscraping and then parses the salary text to attempt to normalise it for PA."""
     
     # seek.com.au specific search variables
-    minimumSalary = '150000'
+    minimumSalary = '0'
     worktypes = ['full-time','contract-temp']
     
     try:
@@ -77,22 +77,7 @@ def seek_job_search(driver):
                     time.sleep(delay)
                 except:
                     lastpage = True
-                    
-    for worktype in worktypes:                 
-        driver.get(f'https://www.seek.com.au/Data-jobs/{worktype}?classification=1223%2C6281%2C1210&daterange=1&sortmode=ListedDate')
-        delay = random.uniform(0.5, 1.0)
-        time.sleep(delay)
-        lastpage = False
-        while lastpage == False:
-            try:
-                listjobs(worktype, "Data")
-                next = driver.find_element(By.CSS_SELECTOR,'nav > ul > li._1wkzzau0.a1msqia6.a1msqi9v.a1msqiw > a')
-                next.click()
-                delay = random.uniform(0.5, 1.0)
-                time.sleep(delay)
-            except:
-                lastpage = True
-                        
+                                    
     print("Saving")
     newdata = pd.DataFrame(job_data)
     df_seek = pd.concat([df,newdata], ignore_index=True)

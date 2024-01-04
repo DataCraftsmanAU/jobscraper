@@ -13,26 +13,28 @@ pd.set_option('mode.chained_assignment', None)
 
 def checkJobs(driver):
     for job in range(0, len(df_seek['Link'])):
-        if (df_seek['Active'][job] != 0):
+        if (df_seek['Date Removed'][job] != ""):
             print(df_seek['Link'][job])
             driver.get(df_seek['Link'][job])
             try:
                 print(driver.find_element(By.CSS_SELECTOR, '#app > div > div:nth-child(8) > div > div > div > div > div:nth-child(1) > h2').text)
-                df_seek['Active'][job] = False
                 df_seek['Date Removed'][job] = datetime.today().date()
             except:
                 print("Still Active")
 
+print("Loading seekjobs.xlsx...")
 df_seek = pd.ExcelFile('seekjobs.xlsx').parse('Sheet1')
+
+print("Sorting by Date Added")
 df_seek = df_seek.sort_values(by=['date'])
 
 #Deactivate fields older than 30 days
-threshold_date = datetime.today() - timedelta(days=30)
-df_seek['active'] = df_seek['date'].apply(lambda x: 0 if x <= threshold_date else 1)
+print("Removing Jobs older than 30 days")
+threshold_date = datetime.today().date() - timedelta(days=30)
+threshold_date = pd.to_datetime(threshold_date)
+mask = (df_seek['date'] <= threshold_date) & (df_seek['Date Removed'].isnull()) | (df_seek['Date Removed'].eq(""))
+df_seek.loc[mask, 'Date Removed'] = datetime.today().date()
 
-if 'Active' not in df_seek.columns:
-    df_seek['Active'] = True
-    
 if 'Date Removed' not in df_seek.columns:
     df_seek['Date Removed'] = ""
 
@@ -41,5 +43,5 @@ seek_thread = threading.Thread(target=checkJobs, args=(driverSeek,))
 seek_thread.start()    
 seek_thread.join()
 
-print("Saving seekjobs.xlsx...")
+print("Finished. Saving seekjobs.xlsx...")
 df_seek.to_excel("seekjobs.xlsx", index=False)
