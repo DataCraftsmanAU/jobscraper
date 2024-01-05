@@ -3,6 +3,7 @@ import re
 
 """Missing Edge Cases
 "up to ~$180,000k + benefits"
+Anything with ftly pay.
 
 """
 

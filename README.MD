@@ -1,6 +1,8 @@
 # Job Scraper
 
-This project is for scraping job adverts from www.seek.com.au.
+This project is an end to end analytics for scraping job adverts from www.seek.com.au and gaining insights on that job data.
+
+![Screenshot](images/architecture.png)
 
 Unique jobs are appended to the jobs excel file each time you run it with the current date that it was found. Uniqueness was based on the URL of the job ad.
 

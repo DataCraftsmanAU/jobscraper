@@ -9,7 +9,6 @@ import openpyxl
 from datetime import datetime
 from urllib.parse import urlparse
 
-from credentials import *
 from config import *
 
 def seek_job_search(driver):

@@ -4,8 +4,6 @@ import pandas as pd
 
 #these files are created in this same folder. config.py and credentials.py
 from credentials import *   # stores your postgres server details
-from config import *        # will have your search variables.
-from seek import *
 from salary import *
 
 print("Loading seekjobs.xlsx")

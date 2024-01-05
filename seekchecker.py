@@ -4,10 +4,6 @@ import pandas as pd
 import threading
 from datetime import datetime, timedelta
 
-#these files are created in this same folder. config.py and credentials.py
-from config import *        # will have your search variables.
-from seek import *
-
 pd.set_option('mode.chained_assignment', None)
 
 def checkJobs(driver):
