@@ -1,5 +1,6 @@
 #install these with 'pip install -r requirements.txt'
 from selenium import webdriver
+from selenium.webdriver.common.by import By
 import pandas as pd
 import threading
 from datetime import datetime, timedelta
