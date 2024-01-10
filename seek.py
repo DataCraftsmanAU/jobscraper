@@ -16,6 +16,7 @@ def seek_job_search(driver):
     
     # seek.com.au specific search variables
     minimumSalary = '0'
+    maximumSalary = ''
     worktypes = ['full-time','contract-temp']
     
     try:
@@ -63,7 +64,7 @@ def seek_job_search(driver):
     job_data = []
     for search in range(len(SEARCHES)):
         for worktype in worktypes:
-            driver.get(f'https://www.seek.com.au/jobs/{worktype}?keywords=%22{SEARCHES[search]}%22&salaryrange={minimumSalary}-&salarytype=annual&worktype=243%2C242%2C244')
+            driver.get(f'https://www.seek.com.au/{SEARCHES[search]}-jobs/{worktype}?salaryrange={minimumSalary}-{maximumSalary}&salarytype=annual')
             delay = random.uniform(0.5, 1.0)
             time.sleep(delay)
             lastpage = False
