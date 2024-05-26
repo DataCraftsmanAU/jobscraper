@@ -15,7 +15,7 @@ def seek_job_search(driver):
     """Runs seek.com.au specific webscraping and then parses the salary text to attempt to normalise it for PA."""
     
     # seek.com.au specific search variables
-    minimumSalary = '0'
+    minimumSalary = '150000'
     maximumSalary = ''
     worktypes = ['full-time','contract-temp']
     
@@ -43,7 +43,7 @@ def seek_job_search(driver):
             except:
                 company = ""
             try:
-                location = listing.find_element(By.CSS_SELECTOR, 'div:nth-child(1) > span > a').text
+                location = listing.find_element(By.CSS_SELECTOR, 'div:nth-child(1) > div > span > span:nth-child(1) > a').text
                 print(location)
             except:
                 location = ""

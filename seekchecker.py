@@ -34,10 +34,10 @@ for job in range(0, len(df_seek['Link'])):
 if 'Date Removed' not in df_seek.columns:
     df_seek['Date Removed'] = ""
 
-driverSeek = webdriver.Chrome()
-seek_thread = threading.Thread(target=checkJobs, args=(driverSeek,))
-seek_thread.start()    
-seek_thread.join()
+# driverSeek = webdriver.Chrome()
+# seek_thread = threading.Thread(target=checkJobs, args=(driverSeek,))
+# seek_thread.start()
+# seek_thread.join()
 
 print("Finished. Saving seekjobs.xlsx...")
 df_seek.to_excel("seekjobs.xlsx", index=False)
