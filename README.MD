@@ -22,7 +22,7 @@ Data is stored in both Excel and Postgres if you have a server configured.
 
 ## Setup
 
-Clone https://github.com/MichaelJenningsAI/jobscraper.git
+Clone https://github.com/DataCraftsmanAU/jobscraper.git
 
 Open a terminal in the new folder.
 
