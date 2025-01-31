@@ -43,12 +43,12 @@ def seek_job_search(driver):
             except:
                 company = ""
             try:
-                location = listing.find_element(By.CSS_SELECTOR, 'div:nth-child(1) > div > span > span:nth-child(1) > a').text
+                location = listing.find_element(By.CSS_SELECTOR, 'div.snwpn00.l1r1185b.l1r118hf.l1r1186n > div:nth-child(1) > span > span:nth-child(1) > span').text
                 print(location)
             except:
                 location = ""
             try:
-                salary = listing.find_element(By.CSS_SELECTOR, 'div:nth-child(2) > div > span > span').text
+                salary = listing.find_element(By.CSS_SELECTOR, 'div:nth-child(2) > span > span').text
                 print(salary)
             except:
                 salary = ""
